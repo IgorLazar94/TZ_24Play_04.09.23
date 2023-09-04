@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     {
         if (target != null)
         {
-            transform.position = new Vector3(offset.x, offset.y, target.transform.position.z + offset.z);
+            transform.position = new Vector3(offset.x, target.transform.position.y + offset.y, target.transform.position.z + offset.z);
         }
     }
 }
