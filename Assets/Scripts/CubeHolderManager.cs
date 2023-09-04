@@ -13,7 +13,6 @@ public class CubeHolderManager : MonoBehaviour
     {
         if (other.CompareTag("PickableCube"))
         {
-            Debug.Log("Cube holder find pickup");
             AddCubeToHolder();
             cubeCounter++;
             Destroy(other.gameObject);

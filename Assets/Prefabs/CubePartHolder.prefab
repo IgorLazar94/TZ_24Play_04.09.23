@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8883299213206729822}
   - component: {fileID: 6708645317385903602}
   - component: {fileID: 8279235278581548777}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7805143216317093806}
   - component: {fileID: 307365321298051833}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CubePartHolder
   m_TagString: PickableCube
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ BoxCollider:
   m_GameObject: {fileID: 3752543319338045965}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
