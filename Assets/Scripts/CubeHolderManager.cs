@@ -9,9 +9,13 @@ public class CubeHolderManager : MonoBehaviour
     public GameObject cubePrefab;
     private int cubeCounter = 1;
 
+    private void Start()
+    {
+        GetComponentInChildren<CubePartHolder>().SetHolderManager(this);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PickableCube"))
+        if (other.CompareTag(TagList.PickableCube))
         {
             AddCubeToHolder();
             cubeCounter++;
@@ -23,6 +27,12 @@ public class CubeHolderManager : MonoBehaviour
     {
         OnAddNewCube?.Invoke();
         var newCube = Instantiate(cubePrefab, transform.position, Quaternion.identity, transform);
+        newCube.GetComponent<CubePartHolder>().SetHolderManager(this);
         newCube.transform.position = new Vector3(transform.position.x, transform.position.y + cubeCounter, transform.position.z);
+    }
+
+    public void DecreaseCubeCounter()
+    {
+        cubeCounter--;
     }
 }

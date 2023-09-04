@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickableCube
+  - Wall
+  - CubePartHolder
   layers:
   - Default
   - TransparentFX
@@ -12,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - CubePartHolder
+  - Pickable
   - 
   - 
   - 
