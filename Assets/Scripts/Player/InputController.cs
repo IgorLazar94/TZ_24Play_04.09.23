@@ -6,7 +6,8 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     public static bool isReadyToMove { private get; set; }
-    [SerializeField] private float playerOffsetSpeed;
+    [SerializeField] private float playerOffsetSpeedPC;
+    [SerializeField] private float playerOffsetSpeedAndroid;
     [SerializeField] private float playerForwardSpeed;
     private float borderSize = 2f;
     private bool isDragging = false;
@@ -16,7 +17,8 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
-        playerOffsetSpeed = GameSettings.Instance.GetPlayerOffsetSpeed();
+        playerOffsetSpeedPC = GameSettings.Instance.GetPlayerOffsetSpeedPC();
+        playerOffsetSpeedAndroid = GameSettings.Instance.GetPlayerOffsetSpeedAndroid();
         playerForwardSpeed = GameSettings.Instance.GetPlayerForwardSpeed();
         isReadyToMove = false;
         CheckPlatform();
@@ -52,7 +54,7 @@ public class InputController : MonoBehaviour
         if (isDragging)
         {
             Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
-            float xOffset = mouseDelta.x * playerOffsetSpeed * Time.deltaTime;
+            float xOffset = mouseDelta.x * playerOffsetSpeedPC * Time.deltaTime;
             Vector3 newPosition = transform.position + new Vector3(xOffset, 0, 0);
             newPosition.x = Mathf.Clamp(newPosition.x, -borderSize, borderSize);
             transform.position = newPosition;
@@ -72,7 +74,7 @@ public class InputController : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 Vector2 touchDelta = touch.position - touchStartPos;
-                float xOffset = touchDelta.x * playerOffsetSpeed * Time.deltaTime;
+                float xOffset = touchDelta.x * playerOffsetSpeedAndroid * Time.deltaTime;
                 Vector3 newPosition = transform.position + new Vector3(xOffset, 0, 0);
                 newPosition.x = Mathf.Clamp(newPosition.x, -borderSize, borderSize);
                 transform.position = newPosition;

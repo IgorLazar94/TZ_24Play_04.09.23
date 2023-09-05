@@ -25,11 +25,17 @@ public class GameSettings : MonoBehaviour
     }
     [Header("Player Settings")]
     [SerializeField] private float playerForwardSpeed;
-    [SerializeField] private float playerOffsetSpeed;
+    [SerializeField] private float playerOffsetSpeedPC;
+    [SerializeField] private float playerOffsetSpeedAndroid;
     [SerializeField] private float playerPushForceValue;
     [Header("Track Settings")]
     [SerializeField] private float timeToRaiseTrack;
     [SerializeField] private float distanceToRaiseTrack;
+    [Header("Camera Shake")]
+    [SerializeField] private float cameraShakeDuration;
+    [SerializeField] private float cameraShakeMagnitude;
+
+
 
 
 
@@ -37,9 +43,13 @@ public class GameSettings : MonoBehaviour
     {
         return playerForwardSpeed;
     }
-    public float GetPlayerOffsetSpeed()
+    public float GetPlayerOffsetSpeedPC()
     {
-        return playerOffsetSpeed;
+        return playerOffsetSpeedPC;
+    }
+    public float GetPlayerOffsetSpeedAndroid()
+    {
+        return playerOffsetSpeedAndroid;
     }
     public float GetPlayerPushForceValue()
     {
@@ -52,6 +62,14 @@ public class GameSettings : MonoBehaviour
     public float GetDistanceToRaiseTrack()
     {
         return distanceToRaiseTrack;
+    }
+    public float GetCameraShakeDuration()
+    {
+        return cameraShakeDuration;
+    }
+    public float GetCameraShakeMagnitude()
+    {
+        return cameraShakeMagnitude;
     }
 
 }
