@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CapsuleCollider mainCapsule;
     [SerializeField] private Rigidbody mainRigidbody;
     [SerializeField] private Animation scoresTextAnimation;
+    [SerializeField] private ParticleSystem cubeStackFX;
     private Rigidbody[] ragdollRigidbodies;
     private float cubeHeight;
     private Animator stickmanAnimator;
     private float pushForceValue;
     private TextMeshProUGUI scoresText;
-
     private void Start()
     {
         pushForceValue = GameSettings.Instance.GetPlayerPushForceValue();
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         CubeHolderManager.OnAddNewCube += UpdateStickmanHeight;
         CubeHolderManager.OnAddNewCube += UpdateScoresText;
+        CubeHolderManager.OnAddNewCube += PlayCubeStackFX;
         GameManager.OnLosingTheGame += EnableRagdoll;
     }
 
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         CubeHolderManager.OnAddNewCube -= UpdateStickmanHeight;
         CubeHolderManager.OnAddNewCube -= UpdateScoresText;
+        CubeHolderManager.OnAddNewCube -= PlayCubeStackFX;
         GameManager.OnLosingTheGame -= EnableRagdoll;
     }
 
@@ -86,5 +88,10 @@ public class PlayerController : MonoBehaviour
     private void DisableScoresTextAnimation()
     {
         scoresTextAnimation.gameObject.SetActive(false);
+    }
+
+    private void PlayCubeStackFX()
+    {
+        cubeStackFX.Play();
     }
 }
