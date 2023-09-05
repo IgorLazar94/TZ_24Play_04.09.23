@@ -25,7 +25,7 @@ public class CubePartHolder : MonoBehaviour
         if (isUpperCube)
         {
             GameManager.OnLosingTheGame?.Invoke();
-            this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
+            //this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
         }
     }
 }

@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         stickmanAnimator = stickman.GetComponent<Animator>();
         ragdollRigidbodies = stickmanAnimator.GetComponentsInChildren<Rigidbody>();
-        cubeHeight = cubeHolderManager.GetComponentInChildren<BoxCollider>().size.y;
+        cubeHeight = cubeHolderManager.GetComponentInChildren<BoxCollider>().size.y + 0.2f;
     }
 
     private void OnEnable()
