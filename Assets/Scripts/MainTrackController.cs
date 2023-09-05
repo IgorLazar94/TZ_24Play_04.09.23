@@ -7,7 +7,7 @@ using DG.Tweening;
 public class MainTrackController : MonoBehaviour
 {
     [SerializeField] private GameObject[] partTrackPrefabs;
-    private List<PartTrack> listOfTracks = new List<PartTrack>();
+    private List<PartTrack> listOfActiveTracks = new List<PartTrack>();
     private float trackLength;
     private float correctTrackHeight;
     private int counter;
@@ -17,8 +17,13 @@ public class MainTrackController : MonoBehaviour
     private void Start()
     {
         AdReadyPartOfTracks();
-        trackLength = listOfTracks[0].transform.localScale.z;
-        correctTrackHeight = listOfTracks[0].transform.localPosition.y;
+        GetTrackValues();
+    }
+
+    private void GetTrackValues()
+    {
+        trackLength = listOfActiveTracks[0].transform.localScale.z;
+        correctTrackHeight = listOfActiveTracks[0].transform.localPosition.y;
     }
 
     private void AdReadyPartOfTracks()
@@ -26,21 +31,33 @@ public class MainTrackController : MonoBehaviour
         var tracks = GetComponentsInChildren<PartTrack>();
         foreach (var track in tracks)
         {
-            listOfTracks.Add(track);
+            listOfActiveTracks.Add(track);
             track.SetParentTrackController(this);
         }
-        counter = listOfTracks.Count;
+        counter = listOfActiveTracks.Count;
     }
 
     public void InitialNewPartOfTrack()
     {
         int randomNumber = Random.Range(0, partTrackPrefabs.Length);
         var newTrack = Instantiate(partTrackPrefabs[randomNumber], transform.position, Quaternion.identity, transform);
-        newTrack.GetComponent<PartTrack>().SetParentTrackController(this);
+        PartTrack newTrackScript = newTrack.GetComponent<PartTrack>();
+        newTrackScript.SetParentTrackController(this);
+        listOfActiveTracks.Add(newTrackScript);
         newTrack.transform.position = new Vector3(newTrack.transform.position.x, 
                                                   newTrack.transform.position.y - distanceToRaiseTrack, 
                                                   newTrack.transform.position.z + (counter * trackLength));
         newTrack.transform.DOMoveY(correctTrackHeight, timeToRaiseTrack);
         counter++;
+        if (listOfActiveTracks.Count >= 5)
+        {
+            ClearUnnecessaryTracks();
+        }
+    }
+
+    private void ClearUnnecessaryTracks()
+    {
+        Destroy(listOfActiveTracks[0].gameObject);
+        listOfActiveTracks.RemoveAt(0);
     }
 }

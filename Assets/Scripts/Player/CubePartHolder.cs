@@ -7,6 +7,7 @@ public class CubePartHolder : MonoBehaviour
 {
     public bool isUpperCube { private get; set; }
     private CubeHolderManager cubeHolderManager;
+    private float timeToDestroyLostCube = 3f;
     
     public void SetHolderManager(CubeHolderManager _cubeHolderManager)
     {
@@ -17,7 +18,14 @@ public class CubePartHolder : MonoBehaviour
     {
         CheckLooseCondition();
         gameObject.transform.parent = null;
-        cubeHolderManager.DecreaseCubeCounter(this);
+        StartCoroutine(DestroyLostCube());
+        cubeHolderManager.ClearCubeFromList(this);
+    }
+
+    private IEnumerator DestroyLostCube()
+    {
+        yield return new WaitForSeconds(timeToDestroyLostCube);
+        Destroy(this.gameObject);
     }
 
     private void CheckLooseCondition()

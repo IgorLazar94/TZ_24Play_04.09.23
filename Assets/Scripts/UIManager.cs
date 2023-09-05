@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     public void StartNewGame()
     {
-        gameManager.StartGame();
+        GameManager.OnStartTheGame.Invoke();
     }
 
     public void RestartThisLevel()

@@ -36,7 +36,7 @@ public class CubeHolderManager : MonoBehaviour
         FindUpperCube();
     }
 
-    public void DecreaseCubeCounter(CubePartHolder cubePartHolder)
+    public void ClearCubeFromList(CubePartHolder cubePartHolder)
     {
         childCubesList.Remove(cubePartHolder);
     }
