@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private PlayerController target;
+    private CameraShake cameraShake;
     private Vector3 offset;
     private ParticleSystem warpEffect;
 
@@ -12,16 +13,19 @@ public class CameraController : MonoBehaviour
     {
         GameManager.OnStartTheGame += PlayWarpFX;
         GameManager.OnLosingTheGame += StopWarpFX;
+        Wall.OnCrossedTheWall += PlayCameraShake;
     }
 
     private void OnDisable()
     {
         GameManager.OnStartTheGame -= PlayWarpFX;
         GameManager.OnLosingTheGame -= StopWarpFX;
+        Wall.OnCrossedTheWall -= PlayCameraShake;
     }
 
     private void Start()
     {
+        cameraShake = GetComponentInChildren<CameraShake>();
         warpEffect = GetComponentInChildren<ParticleSystem>();
         offset = transform.position - target.transform.position;
     }
@@ -42,5 +46,10 @@ public class CameraController : MonoBehaviour
     private void PlayWarpFX()
     {
         warpEffect.Play();
+    }
+
+    private void PlayCameraShake()
+    {
+        cameraShake.ShakingCamera();
     }
 }

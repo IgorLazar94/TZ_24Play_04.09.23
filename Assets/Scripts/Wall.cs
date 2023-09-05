@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 [SelectionBase]
 public class Wall : MonoBehaviour
 {
+    public static Action OnCrossedTheWall;
     private BoxCollider wallCollider;
     private bool isGameEnded;
 
@@ -27,6 +29,7 @@ public class Wall : MonoBehaviour
         if (collision.gameObject.CompareTag(TagList.CubePartHolder))
         {
             collision.gameObject.GetComponent<CubePartHolder>().RemoveCubeFromHolder();
+            OnCrossedTheWall.Invoke();
             if (!isGameEnded)
             {
                 wallCollider.enabled = false;
