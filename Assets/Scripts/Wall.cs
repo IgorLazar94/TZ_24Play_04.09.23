@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [SelectionBase]
@@ -26,6 +24,7 @@ public class Wall : MonoBehaviour
         wallGroup = transform.parent.GetComponent<WallGroupController>();
         wallCollider = GetComponent<BoxCollider>();
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(TagList.CubePartHolder))

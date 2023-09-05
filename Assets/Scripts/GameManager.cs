@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
@@ -9,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static Action OnLosingTheGame;
     public static Action OnStartTheGame;
     [SerializeField] private UIManager uIManager;
-    [SerializeField] private PlayerController playerController;
 
     private void OnEnable()
     {

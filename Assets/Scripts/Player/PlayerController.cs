@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Animator stickmanAnimator;
     private float pushForceValue;
     private TextMeshProUGUI scoresText;
+
     private void Start()
     {
         pushForceValue = GameSettings.Instance.GetPlayerPushForceValue();

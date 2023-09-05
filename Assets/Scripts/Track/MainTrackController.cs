@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using DG.Tweening;
 
@@ -10,9 +8,9 @@ public class MainTrackController : MonoBehaviour
     private List<PartTrack> listOfActiveTracks = new List<PartTrack>();
     private float trackLength;
     private float correctTrackHeight;
-    private int counter;
     private float timeToRaiseTrack;
     private float distanceToRaiseTrack;
+    private int counter;
 
     private void Start()
     {

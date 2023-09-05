@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(PlayerController))]
 public class InputController : MonoBehaviour
 {
     public static bool isReadyToMove { private get; set; }
@@ -11,17 +8,22 @@ public class InputController : MonoBehaviour
     private float playerForwardSpeed;
     private float borderSize = 2f;
     private bool isDragging = false;
+    private bool isAndroidPlatform = false;
     private Vector3 lastMousePosition;
     private Vector2 touchStartPos;
-    private bool isAndroidPlatform = false;
 
     private void Awake()
+    {
+        GetGameSettingsValues();
+        CheckPlatform();
+        isReadyToMove = false;
+    }
+
+    private void GetGameSettingsValues()
     {
         playerOffsetSpeedPC = GameSettings.Instance.GetPlayerOffsetSpeedPC();
         playerOffsetSpeedAndroid = GameSettings.Instance.GetPlayerOffsetSpeedAndroid();
         playerForwardSpeed = GameSettings.Instance.GetPlayerForwardSpeed();
-        isReadyToMove = false;
-        CheckPlatform();
     }
 
     void Update()

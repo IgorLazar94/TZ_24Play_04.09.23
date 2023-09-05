@@ -1,6 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +8,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private Image handSprite;
+    private float startPosXHandSprite = -190f;
+    private float endPosXHandSprite = 210f;
+    private float moveDurationHandSprite = 1.5f;
     private RectTransform startHandSpriteTransform;
-    public float startPosXHandSprite = -190f;
-    public float endPosXHandSprite = 210f;
-    public float moveDurationHandSprite = 1.5f;
 
     private void Awake()
     {
@@ -28,12 +26,12 @@ public class UIManager : MonoBehaviour
     private void AnimateHandSprite()
     {
         startHandSpriteTransform = handSprite.GetComponent<RectTransform>();
-        Sequence moveSequence = DOTween.Sequence();
-        moveSequence.Append(startHandSpriteTransform.DOAnchorPosX(endPosXHandSprite, moveDurationHandSprite));
-        moveSequence.Append(startHandSpriteTransform.DOAnchorPosX(startPosXHandSprite, moveDurationHandSprite));
-        moveSequence.SetLoops(-1);
-        moveSequence.SetEase(Ease.OutSine);
-        moveSequence.Play();
+        Sequence moveHandIconSeq = DOTween.Sequence();
+        moveHandIconSeq.Append(startHandSpriteTransform.DOAnchorPosX(endPosXHandSprite, moveDurationHandSprite));
+        moveHandIconSeq.Append(startHandSpriteTransform.DOAnchorPosX(startPosXHandSprite, moveDurationHandSprite));
+        moveHandIconSeq.SetEase(Ease.OutSine);
+        moveHandIconSeq.SetLoops(-1);
+        moveHandIconSeq.Play();
     }
 
     private void ActivatePanel(GameObject panel, bool isActive)

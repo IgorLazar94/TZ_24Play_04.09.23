@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSettings : MonoBehaviour
@@ -35,10 +33,6 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private float cameraShakeDuration;
     [SerializeField] private float cameraShakeMagnitude;
 
-
-
-
-
     public float GetPlayerForwardSpeed()
     {
         return playerForwardSpeed;
@@ -71,5 +65,4 @@ public class GameSettings : MonoBehaviour
     {
         return cameraShakeMagnitude;
     }
-
 }
