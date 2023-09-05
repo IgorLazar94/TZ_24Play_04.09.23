@@ -11,11 +11,13 @@ public class MainTrackController : MonoBehaviour
     private float trackLength;
     private float correctTrackHeight;
     private int counter;
-    private float timeToRaiseTrack = 0.75f;
-    private float distanceToRaiseTrack = 30f;
+    private float timeToRaiseTrack;
+    private float distanceToRaiseTrack;
 
     private void Start()
     {
+        timeToRaiseTrack = GameSettings.Instance.GetTimeToRaiseTrack();
+        distanceToRaiseTrack = GameSettings.Instance.GetDistanceToRaiseTrack();
         AdReadyPartOfTracks();
         GetTrackValues();
     }

@@ -13,10 +13,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody[] ragdollRigidbodies;
     private float cubeHeight;
     private Animator stickmanAnimator;
-    private float pushForceValue = 25f;
+    private float pushForceValue;
 
     private void Start()
     {
+        pushForceValue = GameSettings.Instance.GetPlayerPushForceValue();
         stickmanAnimator = stickman.GetComponent<Animator>();
         ragdollRigidbodies = stickmanAnimator.GetComponentsInChildren<Rigidbody>();
         cubeHeight = cubeHolderManager.GetComponentInChildren<BoxCollider>().size.y + 1f;

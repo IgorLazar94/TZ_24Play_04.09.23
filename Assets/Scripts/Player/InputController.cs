@@ -6,9 +6,9 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     public static bool isReadyToMove { private get; set; }
-    [SerializeField] private float playerOffsetSpeed = 5f;
-    [SerializeField] private float playerForwardSpeed = 5f;
-    private float border = 2f;
+    [SerializeField] private float playerOffsetSpeed;
+    [SerializeField] private float playerForwardSpeed;
+    private float borderSize = 2f;
     private bool isDragging = false;
     private Vector3 lastMousePosition;
     private Vector2 touchStartPos;
@@ -16,6 +16,8 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
+        playerOffsetSpeed = GameSettings.Instance.GetPlayerOffsetSpeed();
+        playerForwardSpeed = GameSettings.Instance.GetPlayerForwardSpeed();
         isReadyToMove = false;
         CheckPlatform();
     }
@@ -52,7 +54,7 @@ public class InputController : MonoBehaviour
             Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
             float xOffset = mouseDelta.x * playerOffsetSpeed * Time.deltaTime;
             Vector3 newPosition = transform.position + new Vector3(xOffset, 0, 0);
-            newPosition.x = Mathf.Clamp(newPosition.x, -border, border);
+            newPosition.x = Mathf.Clamp(newPosition.x, -borderSize, borderSize);
             transform.position = newPosition;
             lastMousePosition = Input.mousePosition;
         }
@@ -72,7 +74,7 @@ public class InputController : MonoBehaviour
                 Vector2 touchDelta = touch.position - touchStartPos;
                 float xOffset = touchDelta.x * playerOffsetSpeed * Time.deltaTime;
                 Vector3 newPosition = transform.position + new Vector3(xOffset, 0, 0);
-                newPosition.x = Mathf.Clamp(newPosition.x, -border, border);
+                newPosition.x = Mathf.Clamp(newPosition.x, -borderSize, borderSize);
                 transform.position = newPosition;
                 touchStartPos = touch.position;
             }
