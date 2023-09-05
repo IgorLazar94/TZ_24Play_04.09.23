@@ -12,7 +12,7 @@ public class InputController : MonoBehaviour
     private Vector3 lastMousePosition;
     private Vector2 touchStartPos;
 
-    private void Awake()
+    private void Start()
     {
         GetGameSettingsValues();
         CheckPlatform();
