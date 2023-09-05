@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//[RequireComponent(typeof(PlayerController))]
 public class InputController : MonoBehaviour
 {
+    public static bool isReadyToMove { private get; set; }
     [SerializeField] private float playerOffsetSpeed = 5f;
     [SerializeField] private float playerForwardSpeed = 5f;
     private float border = 2f;
@@ -14,6 +16,7 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
+        isReadyToMove = false;
         CheckPlatform();
     }
 
@@ -27,7 +30,10 @@ public class InputController : MonoBehaviour
         {
             InputPC();
         }
-        PlayerMoveForward();
+        if (isReadyToMove)
+        {
+            PlayerMoveForward();
+        }
     }
 
     private void InputPC()

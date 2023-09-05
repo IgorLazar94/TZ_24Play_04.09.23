@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject HUDPanel;
     [SerializeField] private GameObject losePanel;
@@ -26,5 +27,15 @@ public class UIManager : MonoBehaviour
     public void ActivateLosePanel()
     {
         ActivatePanel(losePanel, true);
+    }
+
+    public void StartNewGame()
+    {
+        gameManager.StartGame();
+    }
+
+    public void RestartThisLevel()
+    {
+        gameManager.RestartLevel();
     }
 }

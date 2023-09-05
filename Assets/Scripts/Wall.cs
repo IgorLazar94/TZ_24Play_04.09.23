@@ -5,6 +5,17 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     private BoxCollider wallCollider;
+    private bool isGameEnded;
+
+    private void OnEnable()
+    {
+        GameManager.OnLosingTheGame += SetIsGameEnded;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnLosingTheGame -= SetIsGameEnded;
+    }
 
     private void Start()
     {
@@ -14,9 +25,17 @@ public class Wall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(TagList.CubePartHolder))
         {
-            wallCollider.enabled = false;
             collision.gameObject.GetComponent<CubePartHolder>().RemoveCubeFromHolder();
-            enabled = false;
+            if (!isGameEnded)
+            {
+                wallCollider.enabled = false;
+                enabled = false;
+            }
         }
+    }
+
+    private void SetIsGameEnded()
+    {
+        isGameEnded = true;
     }
 }
