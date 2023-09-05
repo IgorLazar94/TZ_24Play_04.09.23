@@ -17,7 +17,7 @@ public class CubePartHolder : MonoBehaviour
     {
         CheckLooseCondition();
         gameObject.transform.parent = null;
-        cubeHolderManager.DecreaseCubeCounter();
+        cubeHolderManager.DecreaseCubeCounter(this);
     }
 
     private void CheckLooseCondition()

@@ -7,7 +7,6 @@ public class CubeHolderManager : MonoBehaviour
 {
     public static Action OnAddNewCube;
     public GameObject cubePrefab;
-    private int cubeCounter = 1;
     private List<CubePartHolder> childCubesList = new List<CubePartHolder>();
 
     private void Start()
@@ -22,7 +21,6 @@ public class CubeHolderManager : MonoBehaviour
         if (other.CompareTag(TagList.PickableCube))
         {
             AddCubeToHolder();
-            cubeCounter++;
             Destroy(other.gameObject);
         }
     }
@@ -34,13 +32,13 @@ public class CubeHolderManager : MonoBehaviour
         var childCubeScript = newCube.GetComponent<CubePartHolder>();
         childCubeScript.SetHolderManager(this);
         childCubesList.Add(childCubeScript);
-        newCube.transform.position = new Vector3(transform.position.x, transform.position.y + cubeCounter, transform.position.z);
+        newCube.transform.position = new Vector3(transform.position.x, transform.position.y + (childCubesList.Count - 1f), transform.position.z);
         FindUpperCube();
     }
 
-    public void DecreaseCubeCounter()
+    public void DecreaseCubeCounter(CubePartHolder cubePartHolder)
     {
-        cubeCounter--;
+        childCubesList.Remove(cubePartHolder);
     }
 
     public void FindUpperCube()
