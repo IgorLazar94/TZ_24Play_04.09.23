@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void GameLose()
     {
+        Handheld.Vibrate();
         uIManager.ActivateLosePanel();
         InputController.isReadyToMove = false;
     }

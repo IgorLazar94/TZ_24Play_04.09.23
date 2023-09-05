@@ -6,9 +6,9 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     public static bool isReadyToMove { private get; set; }
-    [SerializeField] private float playerOffsetSpeedPC;
-    [SerializeField] private float playerOffsetSpeedAndroid;
-    [SerializeField] private float playerForwardSpeed;
+    private float playerOffsetSpeedPC;
+    private float playerOffsetSpeedAndroid;
+    private float playerForwardSpeed;
     private float borderSize = 2f;
     private bool isDragging = false;
     private Vector3 lastMousePosition;
