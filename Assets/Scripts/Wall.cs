@@ -7,6 +7,7 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     public static Action OnCrossedTheWall;
+    private WallGroupController wallGroup;
     private BoxCollider wallCollider;
     private bool isGameEnded;
 
@@ -22,6 +23,7 @@ public class Wall : MonoBehaviour
 
     private void Start()
     {
+        wallGroup = transform.parent.GetComponent<WallGroupController>();
         wallCollider = GetComponent<BoxCollider>();
     }
     private void OnCollisionEnter(Collision collision)
@@ -35,6 +37,7 @@ public class Wall : MonoBehaviour
                 wallCollider.enabled = false;
                 enabled = false;
             }
+            wallGroup.DisableChildCubes();
         }
     }
 
